@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, View, StyleSheet, Text } from 'react-native';
 import { BarCodeScanner, Camera, Permissions } from 'expo';
 
-export default class OpenCamera extends React.Component {
+export default class CodeDecoder extends React.Component {
     state = {
       hasCameraPermission: null,
       type: Camera.Constants.Type.back,

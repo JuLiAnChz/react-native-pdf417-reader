@@ -1,10 +1,8 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 // Components
 import HomeScreen from './components/homeScreen';
-import OpenCamera from './components/openCamera';
+import CodeDecoder from './components/codeDecoder';
 import DetailsScreen from './components/detailsComponent';
 
 
@@ -12,8 +10,8 @@ export default createStackNavigator({
   Home: {
     screen: HomeScreen,
   },
-  Camera: {
-    screen: OpenCamera,
+  Decoder: {
+    screen: CodeDecoder,
   },
   Details: {
     screen: DetailsScreen
