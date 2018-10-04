@@ -1,21 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
+// Components
+import HomeScreen from './components/homeScreen';
+import OpenCamera from './components/openCamera';
+import DetailsScreen from './components/detailsComponent';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+
+export default createStackNavigator({
+  Home: {
+    screen: HomeScreen,
   },
+  Camera: {
+    screen: OpenCamera,
+  },
+  Details: {
+    screen: DetailsScreen
+  },
+}, {
+    initialRouteName: 'Home',
 });
