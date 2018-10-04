@@ -3,14 +3,19 @@ import { Button, View, StyleSheet, Text } from 'react-native';
 import { BarCodeScanner, Camera, Permissions } from 'expo';
 
 export default class CodeDecoder extends React.Component {
+
+    static navigationOptions = {
+        title: 'Escaner',
+    };
+
     state = {
-      hasCameraPermission: null,
-      type: Camera.Constants.Type.back,
+        hasCameraPermission: null,
+        type: Camera.Constants.Type.back,
     };
   
     async componentWillMount() {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA);
-      this.setState({ hasCameraPermission: status === 'granted' });
+        const { status } = await Permissions.askAsync(Permissions.CAMERA);
+        this.setState({ hasCameraPermission: status === 'granted' });
     }
 
     goToDetailsComponent(scannedData) {
@@ -31,62 +36,62 @@ export default class CodeDecoder extends React.Component {
     }
   
     render() {
-      const { hasCameraPermission } = this.state;
-      if (hasCameraPermission === null) {
-        return <View />;
-      } else if (hasCameraPermission === false) {
-        return <Text>No access to camera</Text>;
-      } else {
-        return (
-            <View style={{ flex: 1 }}>
-                <Button
-                    title="Go back"
-                    onPress={() => this.props.navigation.navigate('Home')}/>
-                <BarCodeScanner
-                    onBarCodeRead={(scan) => this.goToDetailsComponent(scan.data)}
-                    style={[StyleSheet.absoluteFill, styles.container]}
-                >
-                    <View style={styles.layerTop} />
-                    <View style={styles.layerCenter}>
-                    <View style={styles.layerLeft} />
-                    <View style={styles.focused} />
-                    <View style={styles.layerRight} />
-                    </View>
-                    <View style={styles.layerBottom} />
-                </BarCodeScanner>
-            </View>
-        );
-      }
+        const { hasCameraPermission } = this.state;
+        if (hasCameraPermission === null) {
+            return <View />;
+        } else if (hasCameraPermission === false) {
+            return <Text>No access to camera</Text>;
+        } else {
+            return (
+                <View style={{ flex: 1 }}>
+                    <Button
+                        title="Go back"
+                        onPress={() => this.props.navigation.navigate('Home')}/>
+                    <BarCodeScanner
+                        onBarCodeRead={(scan) => this.goToDetailsComponent(scan.data)}
+                        style={[StyleSheet.absoluteFill, styles.container]}
+                    >
+                        <View style={styles.layerTop} />
+                        <View style={styles.layerCenter}>
+                        <View style={styles.layerLeft} />
+                        <View style={styles.focused} />
+                        <View style={styles.layerRight} />
+                        </View>
+                        <View style={styles.layerBottom} />
+                    </BarCodeScanner>
+                </View>
+            );
+        }
     }
-  }
+}
 
 const opacity = 'rgba(0, 0, 0, .6)';
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column'
-  },
-  layerTop: {
-    flex: 2,
-    backgroundColor: opacity
-  },
-  layerCenter: {
-    flex: 1,
-    flexDirection: 'row'
-  },
-  layerLeft: {
-    flex: 1,
-    backgroundColor: opacity
-  },
-  focused: {
-    flex: 10
-  },
-  layerRight: {
-    flex: 1,
-    backgroundColor: opacity
-  },
-  layerBottom: {
-    flex: 2,
-    backgroundColor: opacity
-  },
+    container: {
+        flex: 1,
+        flexDirection: 'column'
+    },
+    layerTop: {
+        flex: 2,
+        backgroundColor: opacity
+    },
+    layerCenter: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    layerLeft: {
+        flex: 1,
+        backgroundColor: opacity
+    },
+    focused: {
+        flex: 10
+    },
+    layerRight: {
+        flex: 1,
+        backgroundColor: opacity
+    },
+    layerBottom: {
+        flex: 2,
+        backgroundColor: opacity
+    },
 });
