@@ -53,9 +53,9 @@ export default class CodeDecoder extends React.Component {
                     >
                         <View style={styles.layerTop} />
                         <View style={styles.layerCenter}>
-                        <View style={styles.layerLeft} />
-                        <View style={styles.focused} />
-                        <View style={styles.layerRight} />
+                            <View style={styles.layerLeft} />
+                            <View style={styles.focused} />
+                            <View style={styles.layerRight} />
                         </View>
                         <View style={styles.layerBottom} />
                     </BarCodeScanner>

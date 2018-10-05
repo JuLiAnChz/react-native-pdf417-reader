@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 
 export default class HomeScreen extends React.Component {
@@ -10,6 +10,7 @@ export default class HomeScreen extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
+        const resizeMode = 'center';
         return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
