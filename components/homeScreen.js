@@ -8,9 +8,21 @@ const AnimatableTouchableHighlight = Animatable.createAnimatableComponent(Toucha
 
 export default class HomeScreen extends React.Component {
 
-    onPressButton() {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         initialBank: 50000
+    //     };
 
-    }
+    //     setInterval(() => {
+    //         this.setState(previousState => {
+    //             return { initialBank: previousState.initialBank - 1 };
+    //         });
+    //         if(this.state.initialBank <= 0) {
+    //             clearInterval(downloadTimer);
+    //         };
+    //     }, 0);
+    // }
 
     render() {
         const { navigate } = this.props.navigation;
@@ -19,24 +31,29 @@ export default class HomeScreen extends React.Component {
                 {/* <ImageBackground source={require('../assets/bg.jpg')} style={styles.bgImage}>
                     <Image source={require('../assets/logo.png')} style={{ width: 200, height: 33 }}/>
                 </ImageBackground> */}
+                <View style={styles.logoWrapper}>
+                    <Animatable.Image animation="fadeIn" source={require('../assets/logo_white.png')} style={{ width: 200, height: 33 }} />
+                </View>
 
-                <Animatable.Text style={[styles.text, styles.title]} animation="fadeIn">¡Hola!</Animatable.Text>
-                <Animatable.Text style={styles.text} animation="fadeInUp" delay={300} easing="ease-in-out">
-                    Para obtener tus datos sólo tenes que presionar en el siguiente botón y escanear el código de barras que hay en tu documento.
-                </Animatable.Text>
+                <View style={styles.content}>
+                    <Animatable.Text style={styles.text} duration={700} animation="fadeInUp" easing="ease-in-out">
+                        Para obtener tus datos sólo tenes que presionar en el siguiente botón y escanear el código de barras que hay en tu documento.
+                    </Animatable.Text>
 
-                <AnimatableTouchableHighlight
-                    animation="fadeInUp"
-                    delay={600}
-                    easing="ease-in-out"
-                    onPress={() => {
-                        this.props.navigation.navigate('Decoder')
-                    }}
-                    style={styles.button}
-                    underlayColor='#fff'
-                >
-                    <Text>Escanear DNI</Text>
-                </AnimatableTouchableHighlight>
+                    <AnimatableTouchableHighlight
+                        animation="fadeInUp"
+                        delay={100}
+                        duration={700}
+                        easing="ease-in-out"
+                        onPress={() => {
+                            this.props.navigation.navigate('Decoder')
+                        }}
+                        style={styles.button}
+                        underlayColor='#003054'
+                    >
+                        <Text style={{color: '#fff'}}>Escanear DNI</Text>
+                    </AnimatableTouchableHighlight>
+                </View>
 
             </View>
         );
@@ -47,17 +64,23 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#003054',
+        justifyContent: 'flex-start',
+        backgroundColor: '#fff',
     },
-    bgImage: {
-        width: '100%',
-        height: 200,
+    logoWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#003054',
+        height: '40%',
+        width: '100%'
     },
+    content: {
+        marginTop: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },    
     button: {
-        backgroundColor: '#fff',
+        backgroundColor: '#003054',
         paddingTop: 8,
         paddingRight: 15,
         paddingBottom: 8,
@@ -65,13 +88,9 @@ const styles = StyleSheet.create({
         marginTop: 25
     },
     text: {
-        color: '#fff',
+        color: '#003054',
         fontSize: 14,
         textAlign: 'center',
+        paddingHorizontal: 20
     },
-    title: {
-        fontSize: 40,
-        letterSpacing: 1,
-        marginBottom: 20,
-    }
 });
