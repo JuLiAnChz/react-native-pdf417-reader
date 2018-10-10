@@ -21,13 +21,13 @@ export default class HomeScreen extends React.Component {
                 </ImageBackground> */}
 
                 <Animatable.Text style={[styles.text, styles.title]} animation="fadeIn">¡Hola!</Animatable.Text>
-                <Animatable.Text style={styles.text} animation="fadeInUp" delay={500} easing="ease-in-out">
+                <Animatable.Text style={styles.text} animation="fadeInUp" delay={300} easing="ease-in-out">
                     Para obtener tus datos sólo tenes que presionar en el siguiente botón y escanear el código de barras que hay en tu documento.
                 </Animatable.Text>
 
                 <AnimatableTouchableHighlight
                     animation="fadeInUp"
-                    delay={1000}
+                    delay={600}
                     easing="ease-in-out"
                     onPress={() => {
                         this.props.navigation.navigate('Decoder')
