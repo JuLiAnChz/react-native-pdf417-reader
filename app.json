@@ -5,7 +5,10 @@
     "slug": "pdf417-decoder",
     "privacy": "public",
     "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -26,6 +29,7 @@
     },
     "android": {
       "package": "com.mobydigital.pdf417reader"
-    }
+    },
+    "githubUrl": "https://github.com/nicolasfabbro/react-native-pdf417-reader"
   }
 }

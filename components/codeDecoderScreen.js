@@ -2,11 +2,7 @@ import React from 'react';
 import { Button, View, StyleSheet, Text } from 'react-native';
 import { BarCodeScanner, Camera, Permissions } from 'expo';
 
-export default class CodeDecoder extends React.Component {
-
-    static navigationOptions = {
-        title: 'Escaner',
-    };
+export default class CodeDecoderScreen extends React.Component {
 
     state = {
         hasCameraPermission: null,
@@ -20,7 +16,7 @@ export default class CodeDecoder extends React.Component {
 
     goToDetailsComponent(scannedData) {
         const data = scannedData.split('@');
-        this.props.navigation.navigate('Details', {
+        this.props.navigation.navigate('Hi', {
             userData: {
                 procedure: data[0],
                 lastname: data[1],
@@ -44,9 +40,6 @@ export default class CodeDecoder extends React.Component {
         } else {
             return (
                 <View style={{ flex: 1 }}>
-                    <Button
-                        title="Go back"
-                        onPress={() => this.props.navigation.navigate('Home')}/>
                     <BarCodeScanner
                         onBarCodeRead={(scan) => this.goToDetailsComponent(scan.data)}
                         style={[StyleSheet.absoluteFill, styles.container]}

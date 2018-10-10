@@ -1,12 +1,22 @@
 import React from 'react';
-import { SectionList, StyleSheet, Text, View } from 'react-native';
+import { Button, SectionList, StyleSheet, Text, View } from 'react-native';
 import UserAvatar from 'react-native-user-avatar';
+import * as Animatable from 'react-native-animatable';
 
 export default class DetailsScreen extends React.Component {
 
-    static navigationOptions = {
-        title: 'Detalles',
-    };
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: 'Detalles',
+            headerLeft: (
+                <Button
+                    onPress={() => {
+                        navigation.navigate('Decoder')
+                    }}
+                    title="Escaner"/>
+            ),
+        }
+    }
 
     capitalize(str) {
         const lower = str.toLowerCase();
@@ -77,5 +87,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
         height: 44,
         backgroundColor: '#fff'
-    },
+    }
   })
