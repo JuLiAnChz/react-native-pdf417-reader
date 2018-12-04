@@ -1,22 +1,28 @@
 import React from 'react';
-import { Button, SectionList, StyleSheet, Text, View } from 'react-native';
+import { Button, SectionList, StyleSheet, Text, View, Platform } from 'react-native';
 import UserAvatar from 'react-native-user-avatar';
 import * as Animatable from 'react-native-animatable';
 
 export default class DetailsScreen extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
-        return {
-            title: 'Detalles',
-            headerLeft: (
-                <Button
-                    onPress={() => {
-                        navigation.navigate('Decoder')
-                    }}
-                    title="Escaner"/>
-            ),
+        console.log(Platform.OS);
+        if(Platform.OS === 'ios') {
+            return {
+                title: 'Detalles',
+                headerLeft: (
+                    <Button
+                        onPress={() => {
+                            navigation.navigate('Decoder')
+                        }}
+                        title="Escaner"/>
+                ),
+            }
+        } else {
+            return null;
         }
     }
+
 
     capitalize(str) {
         const lower = str.toLowerCase();
@@ -30,6 +36,15 @@ export default class DetailsScreen extends React.Component {
         
         return (
         <View style={styles.container}>
+
+            <Animatable.View animation="fadeOutLeft" delay={3000} style={styles.hiView}>
+                <Animatable.View animation="fadeOut" delay={2500}>
+                    <Animatable.Text animation="fadeIn" style={styles.hiViewText}>
+                        ¡Hola {this.capitalize(userData.firstname)}!
+                    </Animatable.Text>
+                </Animatable.View>
+            </Animatable.View>
+
             <View style={styles.headerTop}>
                 <UserAvatar size="80" style={styles.avatar} name={userData.firstname + ' ' + userData.lastname} color="#999" />
                 <Text style={styles.userName}>{ this.capitalize(userData.firstname) } { this.capitalize(userData.lastname) }</Text>
@@ -56,7 +71,7 @@ export default class DetailsScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
     headerTop: {
         paddingTop: 20,
@@ -87,5 +102,24 @@ const styles = StyleSheet.create({
         fontSize: 16,
         height: 44,
         backgroundColor: '#fff'
-    }
+    },
+    hiView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#003054',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 9999,
+    },
+    hiViewText: {
+        color: '#fff',
+        fontSize: 40,
+        letterSpacing: 1,
+        textAlign: 'center',
+        zIndex: 9999,
+    },
   })

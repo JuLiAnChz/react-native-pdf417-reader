@@ -16,7 +16,7 @@ export default class CodeDecoderScreen extends React.Component {
 
     goToDetailsComponent(scannedData) {
         const data = scannedData.split('@');
-        this.props.navigation.navigate('Hi', {
+        this.props.navigation.navigate('Details', {
             userData: {
                 procedure: data[0],
                 lastname: data[1],
