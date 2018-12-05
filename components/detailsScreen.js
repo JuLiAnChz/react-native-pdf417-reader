@@ -5,8 +5,12 @@ import * as Animatable from 'react-native-animatable';
 
 export default class DetailsScreen extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { hiAnimBegin: true };
+    }
+
     static navigationOptions = ({ navigation }) => {
-        console.log(Platform.OS);
         if(Platform.OS === 'ios') {
             return {
                 title: 'Detalles',
@@ -30,6 +34,12 @@ export default class DetailsScreen extends React.Component {
         return capit;
     }
 
+    hideHiView = () => {
+        this.setState({
+            hiAnimBegin: false
+        });
+    }
+
     render() {
         const { navigation } = this.props;
         const userData = navigation.getParam('userData', null);
@@ -37,7 +47,7 @@ export default class DetailsScreen extends React.Component {
         return (
         <View style={styles.container}>
 
-            <Animatable.View animation="fadeOutLeft" delay={3000} style={styles.hiView}>
+            <Animatable.View animation="fadeOutLeft" delay={3000} style={(this.state.hiAnimBegin) ? styles.hiView : styles.hiViewEnd} onAnimationEnd={this.hideHiView}>
                 <Animatable.View animation="fadeOut" delay={2500}>
                     <Animatable.Text animation="fadeIn" style={styles.hiViewText}>
                         ¡Hola {this.capitalize(userData.firstname)}!
@@ -120,6 +130,9 @@ const styles = StyleSheet.create({
         fontSize: 40,
         letterSpacing: 1,
         textAlign: 'center',
-        zIndex: 9999,
     },
+    hiViewEnd: {
+        zIndex: -1,
+        display: 'none'
+    }
   })
